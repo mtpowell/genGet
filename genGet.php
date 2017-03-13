@@ -32,7 +32,7 @@
 					} else { //table returns results
 						self::$url = $results[0]['url'];
 						self::$lastChecked = $results[0]['time'];
-						if (self::$lastChecked >= time() + (self::$wait * 60)) {
+						if (time() >= self::$lastChecked + (self::$wait * 60)) {
 							self::update($dbh);
 						}
 					}
@@ -51,7 +51,7 @@
 				//compare times, see if we need to update the link
 				if (isset($data[1])) {
 					self::$lastChecked = $data[1];
-					if (self::$lastChecked >= time() + (self::$wait * 60)) {
+					if (time() >= self::$lastChecked + (self::$wait * 60)) {
 						self::update();
 					}
 				}
